@@ -1,0 +1,9 @@
+<div>
+  <h2>{{model.title}}</h2>
+
+  <div class="container">
+    {{#each model.answers as |answer|}}
+      {{game-answer model=answer userAnswer=model.userAnswer selectQuestion="selectQuestion"}}
+    {{/each}}
+  </div>
+</div>

@@ -20,6 +20,12 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    firebase: {
+      apiKey: 'AIzaSyCvkNCAMMjpC6TiTO4W_GZPleep-b_AJh4',
+      authDomain: 'the-cs-challenge.firebaseapp.com',
+      databaseURL: 'https://the-cs-challenge.firebaseio.com',
+      storageBucket: 'the-cs-challenge.appspot.com',
     }
   };
 
