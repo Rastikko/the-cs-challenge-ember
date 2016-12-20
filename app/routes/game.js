@@ -6,9 +6,16 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(questions) {
+    if (!questions.get('firstObject')) {
+      return this.transitionTo('create');
+    }
+    // TODO: jump to the next unanswered question
+    if (questions.get('firstObject.userAnswer.id')) {
+      return this.transitionTo('game.score');
+    }
     this.transitionTo('game.question', questions.get('firstObject'));
     this.set('questionIndex', 0);
-    this.set('questions', questions)
+    this.set('questions', questions);
   },
 
   actions: {
@@ -20,7 +27,7 @@ export default Ember.Route.extend({
       if (questionIndex < questions.get('length')) {
         this.transitionTo('game.question', questions.objectAt(questionIndex));
       } else {
-        console.log('NO MORE QUESTIONS!');
+        this.transitionTo('game.score');
       }
     }
   }

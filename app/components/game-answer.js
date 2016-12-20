@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     if (isThisCorrectAwnser) {
       return 'btn-success';
     } else if (isuserAnswerThis) {
-      return 'btn-danger'
+      return 'btn-danger';
     } else {
       return 'btn-primary';
     }

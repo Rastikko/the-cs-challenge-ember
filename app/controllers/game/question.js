@@ -10,9 +10,11 @@ export default Ember.Controller.extend({
     selectQuestion: function(question) {
       console.log('questionSelected:', question);
       this.set('model.userAnswer', question);
+      this.set('model.endTime', new Date());
       // TODO: save the question
+      this.get('model').save();
       // TODO: transition after 200ms
-      Ember.run.later(this, this.getNextQuestion, 1000)
+      Ember.run.later(this, this.getNextQuestion, 1000);
     }
   }
 });
