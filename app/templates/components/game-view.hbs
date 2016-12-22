@@ -1,0 +1,7 @@
+{{#if userQuestionsLoading}}
+  <div class="text-center">
+    <h2>LOADING</h2>
+  </div>
+{{else}}
+  {{outlet startNextQuestion="startNextQuestion"}}
+{{/if}}

@@ -4,6 +4,6 @@
   {{#if session.isAuthenticated}}
     {{#link-to "game" class="btn btn-primary"}}Start Game{{/link-to}}
   {{else}}
-    <button type="button" class="btn btn-default navbar-btn" {{action "signIn" "twitter"}}>Sign in with Twitter</button>
+    <button type="button" class="btn btn-primary" {{action "signIn" "twitter"}}>Sign in with Twitter</button>
   {{/if}}
 </div>

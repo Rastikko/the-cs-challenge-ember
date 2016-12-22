@@ -2,10 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model: function() {
-    return this.store.findAll('question');
-  },
-
-  afterMode: function() {
-    // TODO: detect if the user did not awnser all the questions
+    return this.store.query('game', { uid: this.get('session.currentUser.uid') } ).then((games) => {
+      return games.get('firstObject');
+    });
   }
 });

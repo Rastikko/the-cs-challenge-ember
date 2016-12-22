@@ -76,19 +76,19 @@ export default Ember.Route.extend({
       state: 'NEW'
     });
     return newGame.save();
-  },
-
-  actions: {
-    nextQuestion: function() {
-      this.incrementProperty('questionIndex');
-      let questionIndex = this.get('questionIndex');
-      let questions = this.get('questions');
-
-      if (questionIndex < questions.get('length')) {
-        this.transitionTo('game.question', questions.objectAt(questionIndex));
-      } else {
-        this.transitionTo('game.score');
-      }
-    }
   }
+
+  // actions: {
+  //   nextQuestion: function() {
+  //     this.incrementProperty('questionIndex');
+  //     let questionIndex = this.get('questionIndex');
+  //     let questions = this.get('questions');
+  //
+  //     if (questionIndex < questions.get('length')) {
+  //       this.transitionTo('game.question', questions.objectAt(questionIndex));
+  //     } else {
+  //       this.transitionTo('game.score');
+  //     }
+  //   }
+  // }
 });

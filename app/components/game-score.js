@@ -1,19 +1,27 @@
 import Ember from 'ember';
 import moment from 'moment';
 
+/*
+
+<td class="col-md-10">{{totalTimeFormatted}}</td>
+</tr>
+<tr>
+<th class="col-md-2">Correct questions</th>
+<td class="col-md-10">{{correctAwnsersLength}} / {{questiosnLength}}</td>
+
+**/
+
 export default Ember.Component.extend({
 
-  userAnswer: Ember.computed.map('questions', function(question) {
-    return question.get('userAnswer');
+  correctAwnsers: Ember.computed.filter('game.userQuestions', function(userQuestion) {
+    return userQuestion.get('correct') === 'YES';
   }),
 
-  correctAwnsers: Ember.computed.filterBy('userAnswer', 'correct', true),
+  questiosnLength: Ember.computed.readOnly('game.userQuestions.length'),
   correctAwnsersLength: Ember.computed.readOnly('correctAwnsers.length'),
 
-  questiosnLength: Ember.computed.readOnly('questions.length'),
-
-  questionsTimeDiff: Ember.computed.map('questions', function(question) {
-    return question.get('endTime') - question.get('startTime');
+  questionsTimeDiff: Ember.computed.map('game.userQuestions', function(userQuestion) {
+    return userQuestion.get('endTime') - userQuestion.get('startTime');
   }),
 
   totalTime: Ember.computed.sum('questionsTimeDiff'),
@@ -23,4 +31,5 @@ export default Ember.Component.extend({
     let time = moment.duration(this.get('totalTime'));
     return `${time.minutes()}:${time.seconds()}`;
   })
+
 });

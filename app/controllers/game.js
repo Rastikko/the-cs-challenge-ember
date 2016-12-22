@@ -1,19 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  onInitHandleUserQuestions: Ember.on('init', Ember.observer('availableUserQuestions', function() {
-    if (this.get('availableUserQuestions.length') && !this.get('gameStarted')) {
-      Ember.run.once(this, 'startNextAvailableQuestion');
-      this.set('gameStarted', true);
+  actions: {
+    transitionToNextAvailableQuestion: function() {
+      console.log('transitionToNextAvailableQuestion: ', this.get('model.availableUserQuestions.firstObject'));
+      if (this.get('model.availableUserQuestions.firstObject')) {
+        this.transitionToRoute('game.question', this.get('model.availableUserQuestions.firstObject'));
+      } else {
+        this.transitionToRoute('game.score');
+      }
     }
-  })),
-
-  availableUserQuestions: Ember.computed.filter('model.userQuestions.@each.state', function(userQuestion) {
-    console.log('state: ', userQuestion.get('state'));
-    return userQuestion.get('state') !== 'FINISHED';
-  }),
-
-  startNextAvailableQuestion: function() {
-    this.transitionToRoute('game.question', this.get('availableUserQuestions.firstObject'));
   }
 });

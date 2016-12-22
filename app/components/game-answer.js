@@ -8,29 +8,29 @@ export default Ember.Component.extend({
 
   disabled: Ember.computed.bool('userAnswer.content'),
 
-  answerClass: Ember.computed('userAnswer', function() {
-    console.log('userAnswer!', this.get('userAnswer'));
+  answerClass: Ember.computed('userAnswer', 'userAnswerCorrect', 'answer', function() {
+    const isUserAnswerThis = this.get('userAnswer.id') === this.get('answer.id');
 
+    debugger;
     if (!this.get('userAnswer')) {
       return 'btn-primary';
     }
 
-    const isThisCorrectAwnser = this.get('model.correct');
-    const isuserAnswerThis = this.get('userAnswer.id') === this.get('model.id');
-
-    if (isThisCorrectAwnser) {
+    if (isUserAnswerThis && this.get('userAnswerCorrect') === 'YES') {
       return 'btn-success';
-    } else if (isuserAnswerThis) {
-      return 'btn-danger';
-    } else {
-      return 'btn-primary';
     }
+
+    if (isUserAnswerThis && this.get('userAnswerCorrect') === 'NO') {
+      return 'btn-danger';
+    }
+
+    return 'btn-primary';
   }),
 
   click: function() {
     if (this.get('disabled')) {
       return;
     }
-    this.sendAction('selectQuestion', this.get('model'));
+    this.sendAction('answerQuestion', this.get('answer'));
   }
 });

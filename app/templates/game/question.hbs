@@ -1,9 +1,15 @@
 <div>
   <h2>{{model.question.title}}</h2>
 
-  <div class="container">
-    {{#each model.question.answers as |answer|}}
-      {{game-answer model=answer userAnswer=model.userAnswer selectQuestion="selectQuestion"}}
+  <div>
+    {{#each model.question.answers as |gameAnswer|}}
+      {{game-answer
+        answer=gameAnswer
+        userAnswer=model.answer
+        userAnswerCorrect=model.correct
+        answerQuestion="answerQuestion"}}
     {{/each}}
   </div>
 </div>
+
+{{game-question-result model=model startNextQuestion="startNextQuestion"}}
