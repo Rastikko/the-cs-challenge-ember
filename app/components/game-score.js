@@ -1,17 +1,17 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-/*
-
-<td class="col-md-10">{{totalTimeFormatted}}</td>
-</tr>
-<tr>
-<th class="col-md-2">Correct questions</th>
-<td class="col-md-10">{{correctAwnsersLength}} / {{questiosnLength}}</td>
-
-**/
-
 export default Ember.Component.extend({
+
+  isGameFinished: Ember.computed('game', 'game.state', function() {
+    console.log('game state', this.get('game.state'));
+    let isGameFinished = this.get('game.state') === 'FINISHED';
+    // TODO: set up rule or define on backend
+    if (!isGameFinished) {
+      Ember.run.later(this, this._finishGame, 100);
+    }
+    return isGameFinished;
+  }),
 
   correctAwnsers: Ember.computed.filter('game.userQuestions', function(userQuestion) {
     return userQuestion.get('correct') === 'YES';
@@ -30,6 +30,11 @@ export default Ember.Component.extend({
     // for now just stub it
     let time = moment.duration(this.get('totalTime'));
     return `${time.minutes()}:${time.seconds()}`;
-  })
+  }),
+
+  _finishGame: function() {
+    this.set('game.state', 'FINISHED');
+    this.get('game').save();
+  }
 
 });

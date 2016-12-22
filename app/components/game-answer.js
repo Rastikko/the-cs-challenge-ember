@@ -11,7 +11,6 @@ export default Ember.Component.extend({
   answerClass: Ember.computed('userAnswer', 'userAnswerCorrect', 'answer', function() {
     const isUserAnswerThis = this.get('userAnswer.id') === this.get('answer.id');
 
-    debugger;
     if (!this.get('userAnswer')) {
       return 'btn-primary';
     }
