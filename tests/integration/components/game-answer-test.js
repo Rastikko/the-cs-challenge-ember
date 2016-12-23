@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('game-answer', 'Integration | Component | game answer', {
+moduleForComponent('question-answer', 'Integration | Component | question answer', {
   integration: true
 });
 
@@ -16,9 +16,9 @@ test('it renders', function(assert) {
 
   // Template block usage:
   this.render(hbs`
-    {{#game-answer}}
+    {{#question-answer}}
       template block text
-    {{/game-answer}}
+    {{/question-answer}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

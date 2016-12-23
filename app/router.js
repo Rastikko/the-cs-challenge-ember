@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('score');
   });
   this.route('create');
+  this.route('login');
 });
 
 export default Router;

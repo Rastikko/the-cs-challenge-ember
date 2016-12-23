@@ -1,0 +1,9 @@
+{{#if isQuestionResponded}}
+  <div class="text-center row">
+    {{#if userQuestion.answer.correct}}
+      <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
+    {{else}}
+      <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
+    {{/if}}
+  </div>
+{{/if}}

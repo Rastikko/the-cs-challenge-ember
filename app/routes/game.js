@@ -3,9 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   beforeModel: function() {
-    console.log('uid!', this.get('session.currentUser.uid'));
     return this.store.findRecord('game',this.get('session.currentUser.uid')).catch((data) => {
-      console.log('ERROR', data);
       return this._createNewGame();
     });
   },

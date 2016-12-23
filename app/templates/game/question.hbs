@@ -2,9 +2,9 @@
   <h2>{{model.question.title}}</h2>
 
   <div>
-    {{#each model.question.answers as |gameAnswer|}}
-      {{game-answer
-        answer=gameAnswer
+    {{#each model.question.answers as |answer|}}
+      {{question-answer
+        answer=answer
         userAnswer=model.answer
         userAnswerCorrect=model.correct
         answerQuestion="answerQuestion"}}
@@ -12,4 +12,8 @@
   </div>
 </div>
 
-{{game-question-result model=model startNextQuestion="startNextQuestion"}}
+{{question-result
+  userQuestion=model
+  startNextQuestion="startNextQuestion"
+  transitionToScore="transitionToScore"
+}}

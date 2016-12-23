@@ -4,7 +4,6 @@ import moment from 'moment';
 export default Ember.Component.extend({
 
   isGameFinished: Ember.computed('game', 'game.state', function() {
-    console.log('game state', this.get('game.state'));
     let isGameFinished = this.get('game.state') === 'FINISHED';
     // TODO: set up rule or define on backend
     if (!isGameFinished) {
@@ -13,11 +12,10 @@ export default Ember.Component.extend({
     return isGameFinished;
   }),
 
-  correctAwnsers: Ember.computed.filter('game.userQuestions', function(userQuestion) {
+  correctAwnsers: Ember.computed.filter('game.answeredUserQuestions', function(userQuestion) {
     return userQuestion.get('correct') === 'YES';
   }),
 
-  questiosnLength: Ember.computed.readOnly('game.userQuestions.length'),
   correctAwnsersLength: Ember.computed.readOnly('correctAwnsers.length'),
 
   questionsTimeDiff: Ember.computed.map('game.userQuestions', function(userQuestion) {
