@@ -1,0 +1,19 @@
+.question-answer-container {
+  padding-bottom: 12px;
+}
+
+.question-jumbotron {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.score-panel {
+  width: 20%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.question-answer-button {
+  height: 75px;
+}

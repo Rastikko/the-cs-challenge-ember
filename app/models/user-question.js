@@ -6,5 +6,6 @@ export default DS.Model.extend({
   correct: DS.attr('string'),
   state: DS.attr('string'),
   startTime: DS.attr('date'),
-  endTime: DS.attr('date')
+  endTime: DS.attr('date'),
+  score: DS.attr('number')
 });

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'button',
-  classNames: ['btn', 'btn-lg', 'btn-block'],
+  classNames: ['question-answer-button', 'btn-lg', 'btn-block'],
 
   classNameBindings: ['answerClass', 'disabled'],
 

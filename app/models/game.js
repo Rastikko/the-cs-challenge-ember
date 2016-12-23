@@ -5,5 +5,6 @@ export default DS.Model.extend({
   state: DS.attr('string'),
   finishedTime: DS.attr('date'),
   userQuestions: DS.hasMany('user-question'),
+  currentUserQuestion: DS.belongsTo('user-question'),
   answeredUserQuestions: DS.hasMany('user-question')
 });

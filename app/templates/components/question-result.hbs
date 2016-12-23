@@ -1,9 +1,16 @@
-{{#if isQuestionResponded}}
-  <div class="text-center row">
-    {{#if userQuestion.answer.correct}}
-      <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
-    {{else}}
-      <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
-    {{/if}}
+{{#if isScoreAvailable}}
+
+<div class="score-panel panel text-center {{if userQuestion.answer.correct 'panel-success' 'panel-danger'}}">
+  <div class="panel-heading">{{if userQuestion.answer.correct 'Correct answer!' 'Game Over!'}}</div>
+  <div class="panel-body">
+    Scored: <strong>{{userQuestion.score}}</strong>
   </div>
+</div>
+
+{{#if userQuestion.answer.correct}}
+  <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
+{{else}}
+  <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
+{{/if}}
+
 {{/if}}

@@ -3,15 +3,6 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
 
-  isGameFinished: Ember.computed('game', 'game.state', function() {
-    let isGameFinished = this.get('game.state') === 'FINISHED';
-    // TODO: set up rule or define on backend
-    if (!isGameFinished) {
-      Ember.run.later(this, this._finishGame, 100);
-    }
-    return isGameFinished;
-  }),
-
   correctAwnsers: Ember.computed.filter('game.answeredUserQuestions', function(userQuestion) {
     return userQuestion.get('correct') === 'YES';
   }),
@@ -27,12 +18,12 @@ export default Ember.Component.extend({
   totalTimeFormatted: Ember.computed('totalTime', function() {
     // for now just stub it
     let time = moment.duration(this.get('totalTime'));
-    return `${time.minutes()}:${time.seconds()}`;
-  }),
+    let minutesFormat = '';
+    if (time.minutes()) {
+      minutesFormat = `${time.minutes()} minutes and `;
+    }
 
-  _finishGame: function() {
-    this.set('game.state', 'FINISHED');
-    this.get('game').save();
-  }
+    return minutesFormat + `${time.seconds()} seconds.`;
+  }),
 
 });

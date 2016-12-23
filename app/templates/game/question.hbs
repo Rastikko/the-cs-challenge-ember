@@ -1,19 +1,23 @@
-<div>
-  <h2>{{model.question.title}}</h2>
+{{#if model.question.title}}
 
-  <div>
+<div class="question-jumbotron jumbotron">
+  <p class="text-center"><h3>{{model.question.title}}</h3></p>
+  <div class="row">
     {{#each model.question.answers as |answer|}}
-      {{question-answer
-        answer=answer
-        userAnswer=model.answer
-        userAnswerCorrect=model.correct
-        answerQuestion="answerQuestion"}}
+      <div class="question-answer-container col-md-6">
+        {{question-answer
+          answer=answer
+          userAnswer=model.answer
+          userAnswerCorrect=model.correct
+          answerQuestion="answerQuestion"}}
+      </div>
     {{/each}}
   </div>
 </div>
 
-{{question-result
-  userQuestion=model
-  startNextQuestion="startNextQuestion"
-  transitionToScore="transitionToScore"
-}}
+  {{question-result
+    userQuestion=model
+    startNextQuestion="startNextQuestion"
+    transitionToScore="transitionToScore"
+  }}
+{{/if}}

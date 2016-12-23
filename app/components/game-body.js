@@ -13,6 +13,8 @@ export default Ember.Component.extend({
       return false;
     }
 
+    // TODO: debug why second game does not work
+    console.log('availableUserQuetions', availableUserQuetions);
     return !availableUserQuetions;
   })
 });
