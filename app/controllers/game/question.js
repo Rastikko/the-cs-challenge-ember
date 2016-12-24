@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     },
 
     startNextQuestion: function() {
-      this.get('gameController').send('transitionToNextAvailableQuestion');
+      this.get('gameController').send('transitionToQuestion', this.get('gameController').get('model.currentUserQuestion'));
     },
 
     transitionToScore: function() {

@@ -4,17 +4,19 @@ export default Ember.Component.extend({
 
   gameStarted: false,
 
-  userQuestionsLoading: Ember.computed('game.userQuestions.length', 'game.state', function() {
-    let availableUserQuetions = this.get('game.userQuestions.length')  > 0;
+  userQuestionsLoading: Ember.computed('game.currentUserQuestion', 'game.state', function() {
+    console.log('game.currentUserQuestion', this.get('game.currentUserQuestion.id'));
+    let currentUserQuestionAvailable = this.get('game.currentUserQuestion.id') !== undefined;
 
-    if (availableUserQuetions && !this.get('gameStarted')) {
-      this.sendAction('transitionToNextAvailableQuestion');
+    if (currentUserQuestionAvailable && !this.get('gameStarted')) {
+      this.sendAction('transitionToQuestion', this.get('game.currentUserQuestion'));
       this.set('gameStarted', true);
+    }
+
+    if (this.get('game.state') === 'FINISHED') {
       return false;
     }
 
-    // TODO: debug why second game does not work
-    console.log('availableUserQuetions', availableUserQuetions);
-    return !availableUserQuetions;
+    return !currentUserQuestionAvailable || !this.get('gameStarted');
   })
 });

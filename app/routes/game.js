@@ -12,6 +12,12 @@ export default Ember.Route.extend({
     return this.store.findRecord('game',this.get('session.currentUser.uid'));
   },
 
+  afterModel: function(game) {
+    if (game.get('state') === 'FINISHED') {
+      this.transitionTo('game.score');
+    }
+  },
+
   _createNewGame: function() {
     let newGame = this.store.createRecord('game', {
       id: this.get('session.currentUser.uid'),

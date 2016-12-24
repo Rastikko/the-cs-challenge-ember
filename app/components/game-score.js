@@ -3,13 +3,13 @@ import moment from 'moment';
 
 export default Ember.Component.extend({
 
-  correctAwnsers: Ember.computed.filter('game.answeredUserQuestions', function(userQuestion) {
+  correctAwnsers: Ember.computed.filter('game.answeredUserQuestions.@each.correct', function(userQuestion) {
     return userQuestion.get('correct') === 'YES';
   }),
 
   correctAwnsersLength: Ember.computed.readOnly('correctAwnsers.length'),
 
-  questionsTimeDiff: Ember.computed.map('game.userQuestions', function(userQuestion) {
+  questionsTimeDiff: Ember.computed.map('game.answeredUserQuestions.@each.endTime', function(userQuestion) {
     return userQuestion.get('endTime') - userQuestion.get('startTime');
   }),
 
