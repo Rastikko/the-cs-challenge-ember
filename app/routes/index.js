@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 // TODO: this is not really 1 day...
-const ONE_DAY_MS = 1000;
+const ONE_DAY_MS = 10000;
 
 export default Ember.Route.extend({
   beforeModel: function() {

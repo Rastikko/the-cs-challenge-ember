@@ -5,10 +5,15 @@
     </div>
     <div class="navbar-right">
       {{#if session.isAuthenticated}}
-        <p class="navbar-text">Logged in as {{session.currentUser.displayName}}</p>
+        {{#if session.currentUser.displayName}}
+          <p class="navbar-text">Logged in as {{session.currentUser.displayName}}</p>
+        {{else}}
+          <p class="navbar-text">Anonymous login</p>
+        {{/if}}
         <button type="button" class="btn btn-primary navbar-btn" {{action "signOut"}}>Sign out</button>
       {{else}}
         <button type="button" class="btn btn-primary navbar-btn" {{action "signIn" "twitter"}}>Sign in with Twitter</button>
+        <button type="button" class="btn btn-primary" {{action "signIn" "anonymous"}}>Anonymous sign in</button>
       {{/if}}
     </div>
   </div>

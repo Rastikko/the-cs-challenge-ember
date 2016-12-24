@@ -2,8 +2,14 @@
 
 <div class="text-center">
   {{#if session.isAuthenticated}}
-    {{#link-to "game" class="btn btn-primary"}}Start Game{{/link-to}}
-  {{else}}
-    <button type="button" class="btn btn-primary" {{action "signIn" "twitter"}}>Sign in with Twitter</button>
+    {{#link-to "game" class="btn btn-primary"}}
+      {{#if gameInProgress}}
+        Continue Game
+      {{else if gameFinished}}
+        View Scoreboard
+      {{else}}
+        Start Game
+      {{/if}}
+    {{/link-to}}
   {{/if}}
 </div>
