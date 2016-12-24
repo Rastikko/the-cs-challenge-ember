@@ -4,8 +4,7 @@ export default Ember.Component.extend({
 
   gameStarted: false,
 
-  userQuestionsLoading: Ember.computed('game.currentUserQuestion.id', 'game.state', function() {
-    console.log('game.currentUserQuestion', this.get('game.currentUserQuestion.id'));
+  userQuestionsLoading: Ember.computed('game.currentUserQuestion.id', 'game.state', 'game.currentUserQuestion', function() {
     let currentUserQuestionAvailable = this.get('game.currentUserQuestion.id') !== undefined;
 
     if (currentUserQuestionAvailable && !this.get('gameStarted')) {

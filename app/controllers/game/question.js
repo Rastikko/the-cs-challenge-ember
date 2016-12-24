@@ -4,9 +4,16 @@ export default Ember.Controller.extend({
   gameController: Ember.inject.controller('game'),
 
   actions: {
-    answerQuestion: function(question) {
-      this.set('model.answer', question);
-      this.get('model').save();
+    answerQuestion: function(answer) {
+      if (answer === 'timeout-answer-id') {
+        this.store.findRecord('answer', 'timeout-answer-id').then((timeoutAnswer) => {
+          this.set('model.answer', timeoutAnswer);
+          this.get('model').save();
+        });
+      } else {
+        this.set('model.answer', answer);
+        this.get('model').save();
+      }
     },
 
     startNextQuestion: function() {

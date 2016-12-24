@@ -8,16 +8,17 @@
   <p>The project is on Alpha, so expect some flaws</p>
 </div>
 
-<div class="text-center">
-  {{#if session.isAuthenticated}}
-    {{#link-to "game" class="btn btn-primary"}}
-      {{#if gameInProgress}}
-        Continue Game
-      {{else if gameFinished}}
-        View Scoreboard
-      {{else}}
-        Start Game
-      {{/if}}
-    {{/link-to}}
+<div class="index-action-container text-center">
+  {{#if gameFinished}}
+    <h4>Come back in ~30 minutes to try again</h4>
   {{/if}}
+  {{#link-to "game" class="btn btn-primary btn-lg"}}
+    {{#if gameInProgress}}
+      Continue Game
+    {{else if gameFinished}}
+      View Scoreboard
+    {{else}}
+      Start Game
+    {{/if}}
+  {{/link-to}}
 </div>

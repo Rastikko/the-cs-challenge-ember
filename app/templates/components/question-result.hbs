@@ -1,6 +1,5 @@
 {{#if isScoreAvailable}}
 
-
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <div class="result-panel panel text-center {{if userQuestion.answer.correct 'panel-success' 'panel-danger'}}">
@@ -13,9 +12,9 @@
   </div>
 
   {{#if userQuestion.answer.correct}}
-      <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
+      <button type="button" class="btn btn-lg btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
     {{else}}
-      <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
+      <button type="button" class="btn btn-lg btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
   {{/if}}
 
   {{else}}

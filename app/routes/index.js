@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 // TODO: this is not really 1 day...
-const ONE_DAY_MS = 10000;
+const MINUTES_30 = 1800000;
 
 export default Ember.Route.extend({
   beforeModel: function() {
@@ -10,8 +10,7 @@ export default Ember.Route.extend({
         let finishedTime = game.get('finishedTime');
         if (game.get('state') === 'FINISHED' && game.get('finishedTime')) {
           let now = new Date();
-          if (now - finishedTime > ONE_DAY_MS) {
-            console.log('DELETING!', game);
+          if (now - finishedTime > MINUTES_30) {
             this.store.deleteRecord(game);
             return game.save();
           }

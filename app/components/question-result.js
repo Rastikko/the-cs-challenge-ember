@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 
   onWillDestroyElement: Ember.on('willDestroyElementpublic', function() {
     if (this.get('countDownTimer')) {
-      Ember.run.cancel(this.get('countDownTimer'));
+      this._countDownCancel();
     }
   }),
 
@@ -21,22 +21,33 @@ export default Ember.Component.extend({
       this.get('userQuestion').save();
     }
 
-    let scoreAvailable = this.get('userQuestion.score') !== null
+    let scoreAvailable = this.get('userQuestion.score') !== null;
 
     if (scoreAvailable && this.get('countDownTimer')) {
-      Ember.run.cancel(this.get('countDownTimer'));
+      this._countDownCancel();
     }
 
     return scoreAvailable;
   }),
 
-  countDownTime: Ember.computed('countTime', 'startTime', function() {
-    return Math.round(60 - (this.get('countTime') - this.get('startTime')) / 1000);
+  countDownTime: Ember.computed('countTime', 'userQuestion.startTime', function() {
+    // TODO: user server start time
+    let countTime = Math.round(60 - (this.get('countTime') - this.get('startTime')) / 1000);
+    if (countTime < 0) {
+      this.sendAction('answerQuestion', 'timeout-answer-id');
+      this._countDownCancel();
+    }
+    return Math.max(countTime, 0);
   }),
 
   _countDown: function() {
     this.set('countTime', new Date());
     this.set('countDownTimer', Ember.run.later(this, this._countDown, 1000));
+  },
+
+  _countDownCancel: function() {
+    Ember.run.cancel(this.get('countDownTimer'));
+    this.set('countDownTimer', null);
   },
 
   actions: {

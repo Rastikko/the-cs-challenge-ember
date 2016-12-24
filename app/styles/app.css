@@ -16,6 +16,10 @@ body {
   margin-right: 10px;
 }
 
+.index-action-container {
+  margin-top: 45px;
+}
+
 .question-answer-container {
   padding-bottom: 12px;
 }
