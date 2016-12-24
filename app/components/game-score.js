@@ -26,4 +26,18 @@ export default Ember.Component.extend({
     return minutesFormat + `${time.seconds()} seconds.`;
   }),
 
+  scoreSort: ['score:desc'],
+  sortedScore: Ember.computed.sort('scores', 'scoreSort'),
+
+  scorePosition: Ember.computed('sortedScore.@each.uid', 'game.score', function() {
+    let scores = this.get('sortedScore');
+    let scorePosition = 0;
+    scores.forEach((score, index) => {
+      if (this.get('game.score') === score.get('score')) {
+        scorePosition = index + 1;
+      }
+    });
+    return scorePosition;
+  })
+
 });

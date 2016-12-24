@@ -1,16 +1,34 @@
 {{#if isScoreAvailable}}
 
-<div class="score-panel panel text-center {{if userQuestion.answer.correct 'panel-success' 'panel-danger'}}">
-  <div class="panel-heading">{{if userQuestion.answer.correct 'Correct answer!' 'Game Over!'}}</div>
-  <div class="panel-body">
-    Scored: <strong>{{userQuestion.score}}</strong>
-  </div>
-</div>
 
-{{#if userQuestion.answer.correct}}
-  <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
-{{else}}
-  <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
-{{/if}}
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="result-panel panel text-center {{if userQuestion.answer.correct 'panel-success' 'panel-danger'}}">
+        <div class="panel-heading">{{if userQuestion.answer.correct 'Scored!' 'Game Over!'}}</div>
+        <div class="panel-body">
+          <h3>{{userQuestion.score}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{#if userQuestion.answer.correct}}
+      <button type="button" class="btn btn-primary" {{action 'startNextQuestion'}}>Start Next Question</button>
+    {{else}}
+      <button type="button" class="btn btn-primary" {{action 'transitionToScore'}}>Transition To Score</button>
+  {{/if}}
+
+  {{else}}
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="result-panel panel text-center panel-info">
+      <div class="panel-heading">Countdown</div>
+        <div class="panel-body">
+          <h3>{{countDownTime}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {{/if}}

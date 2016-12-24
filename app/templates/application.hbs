@@ -11,9 +11,6 @@
           <p class="navbar-text">Anonymous login</p>
         {{/if}}
         <button type="button" class="btn btn-primary navbar-btn" {{action "signOut"}}>Sign out</button>
-      {{else}}
-        <button type="button" class="btn btn-primary navbar-btn" {{action "signIn" "twitter"}}>Sign in with Twitter</button>
-        <button type="button" class="btn btn-primary" {{action "signIn" "anonymous"}}>Anonymous sign in</button>
       {{/if}}
     </div>
   </div>
@@ -22,3 +19,10 @@
 <div class="container">
   {{outlet}}
 </div>
+
+<footer class="footer">
+  <p>No copyright whatsoever but created @2016 christmas break.
+    <br />
+    You can access to the <a href="https://github.com/Rastikko/the-cs-challenge-node" target="_blank">Backend nodejs</a>, or
+    <a href="https://github.com/Rastikko/the-cs-challenge-ember"  target="_blank">Frontend Ember.js</a> source code in github.</p>
+</footer>
